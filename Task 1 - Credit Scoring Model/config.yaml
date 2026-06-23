@@ -1,0 +1,71 @@
+# Configuration for Credit Scoring and Prediction System
+
+# Directory paths
+paths:
+  data_dir: "data"
+  raw_data: "data/credit_data.csv"
+  models_dir: "models"
+  best_model_path: "models/best_model.pkl"
+  preprocessor_path: "models/preprocessor.pkl"
+  explainer_path: "models/explainer.pkl"
+  metrics_path: "models/metrics.json"
+  plots_dir: "models/plots"
+  db_path: "database/credit_scoring.db"
+
+# Data features
+features:
+  numerical:
+    - annual_income
+    - monthly_income
+    - loan_amount
+    - existing_debts
+    - debt_to_income_ratio
+    - number_of_credit_cards
+    - credit_utilization_ratio
+    - number_of_late_payments
+    - employment_length
+    - age
+    - savings_balance
+    - credit_history_length
+  categorical:
+    - payment_history       # e.g., "Excellent", "Good", "Fair", "Poor"
+    - loan_repayment_history # e.g., "All Paid", "Mostly Paid", "Delayed", "Defaulted"
+    - previous_defaults     # e.g., "No", "Yes"
+  target: creditworthiness  # "Good" (1) or "Bad" (0)
+
+# Derived features to engineer
+derived_features:
+  - debt_to_income_ratio_refined
+  - credit_utilization_percentage
+  - payment_consistency_score
+  - financial_stability_score
+  - risk_index
+  - credit_age_score
+
+# Database settings
+database:
+  connection_string: "sqlite:///database/credit_scoring.db"
+
+# Model Hyperparameters for Grid Search
+hyperparameters:
+  logistic_regression:
+    C: [0.01, 0.1, 1.0, 10.0]
+    solver: ['liblinear', 'lbfgs']
+  decision_tree:
+    max_depth: [3, 5, 10, null]
+    min_samples_split: [2, 5, 10]
+  random_forest:
+    n_estimators: [50, 100, 200]
+    max_depth: [5, 10, null]
+    random_state: [42]
+  gradient_boosting:
+    n_estimators: [50, 100, 150]
+    learning_rate: [0.01, 0.1, 0.2]
+    max_depth: [3, 5]
+    random_state: [42]
+  xgboost:
+    n_estimators: [50, 100, 150]
+    learning_rate: [0.01, 0.1, 0.2]
+    max_depth: [3, 5]
+    random_state: [42]
+    eval_metric: ['logloss']
