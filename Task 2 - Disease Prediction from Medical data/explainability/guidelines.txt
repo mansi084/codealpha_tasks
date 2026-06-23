@@ -1,0 +1,47 @@
+[CARDIAC_DISEASE_GUIDELINES]
+Condition: Heart Disease
+Key Symptoms: Chest Pain (angina), Shortness of breath, fatigue, palpitations, dizziness, upper body discomfort.
+Clinical Markers: Blood Pressure > 130/80 mmHg, Total Cholesterol > 200 mg/dL, Fasting Blood Sugar > 100 mg/dL.
+Dietary Advice: DASH (Dietary Approaches to Stop Hypertension) diet, lower saturated fats (<7% of daily calories), reduce sodium intake to <1,500mg per day, increase dietary fiber (oats, beans, lentils), eat omega-3 rich foods (salmon, walnuts).
+Preventive Recommendations: Engage in at least 150 minutes of moderate aerobic exercise weekly, maintain BMI < 25.0, avoid all smoking and tobacco products, manage stress levels through mindfulness, obtain 7-8 hours of quality sleep.
+Clinical Action: Refer to a cardiologist for resting ECG, echocardiogram, or exercise stress testing if chest pain or shortness of breath is present.
+
+[DIABETES_GUIDELINES]
+Condition: Diabetes Mellitus
+Key Symptoms: Frequent urination (polyuria), excessive thirst (polydipsia), extreme hunger, unexplained weight loss, fatigue, blurry vision, slow-healing sores.
+Clinical Markers: Fasting Glucose > 125 mg/dL (Diabetic), Fasting Glucose 100-125 mg/dL (Prediabetic), HbA1c >= 6.5% (Diabetic), HbA1c 5.7%-6.4% (Prediabetic), Insulin > 150 uU/mL.
+Dietary Advice: Low glycemic index foods, limit simple carbohydrates and refined sugars, emphasize high fiber (>25g per day), portion control using the diabetes plate method (half non-starchy vegetables, quarter protein, quarter complex carbs), stay hydrated.
+Preventive Recommendations: Routine physical activity (combining resistance training and aerobic exercise), annual eye and foot exams, maintain weight loss (5-10% of body weight for overweight patients), monitor blood glucose daily if diagnosed.
+Clinical Action: Order fasting blood glucose, oral glucose tolerance test (OGTT), or HbA1c. Refer to an endocrinologist and certified diabetes educator.
+
+[BREAST_CANCER_GUIDELINES]
+Condition: Breast Cancer
+Key Symptoms: Breast lump, thickening of skin, changes in size or shape of breast, nipple discharge, skin dimpling or redness.
+Clinical Markers: Mass detection on mammogram, microcalcifications on breast ultrasound, biopsy histopathology confirming atypical cells.
+Dietary Advice: Focus on antioxidant-rich cruciferous vegetables (broccoli, brussels sprouts), minimize alcohol consumption (ideally zero), limit processed meats, eat whole grains and olive oil.
+Preventive Recommendations: Conduct monthly breast self-exams (BSE), undergo annual clinical breast exams starting at age 40, schedule screening mammograms every 1-2 years starting at age 40 or 50 (or earlier if positive family history of BRCA1/BRCA2 mutation).
+Clinical Action: Prompt referral to a breast specialist or oncologist. Schedule diagnostic mammography, ultrasound, or core needle biopsy.
+
+[CHRONIC_KIDNEY_DISEASE_GUIDELINES]
+Condition: Chronic Kidney Disease (CKD)
+Key Symptoms: Fatigue, puffy ankles/feet (peripheral edema), frequent urination at night (nocturia), bubbly or foamy urine, nausea, metal taste in mouth, dry/itchy skin.
+Clinical Markers: Serum Creatinine > 1.2 mg/dL, Blood Urea Nitrogen (BUN) > 20 mg/dL, Glomerular Filtration Rate (GFR) < 60 mL/min/1.73m² (indicates stage 3+ CKD), Albuminuria (protein in urine) > 30 mg/g.
+Dietary Advice: Reduce sodium intake (<2,000 mg/day) to manage blood pressure, limit potassium-rich foods (bananas, potatoes) if potassium is elevated, restrict high-phosphorus foods (dairy, dark sodas), monitor protein intake (0.6 - 0.8 g/kg body weight depending on GFR).
+Preventive Recommendations: Maintain tight control of blood pressure (<130/80 mmHg using ACE inhibitors or ARBs), monitor blood sugar levels, avoid nephrotoxic drugs (such as NSAIDs like ibuprofen, naproxen), stay hydrated.
+Clinical Action: Refer to a nephrologist. Schedule renal ultrasound and monitor GFR, creatinine, and urine albumin-to-creatinine ratio (UACR) regularly.
+
+[LIVER_DISEASE_GUIDELINES]
+Condition: Liver Disease (Hepatitis / Cirrhosis / NAFLD)
+Key Symptoms: Jaundice (yellowing of skin/eyes), abdominal pain or swelling (ascites), fatigue, nausea, dark urine, pale stool, itchy skin, easy bruising.
+Clinical Markers: Elevated SGPT/ALT (>45 U/L), Elevated SGOT/AST (>50 U/L), Total Bilirubin > 1.2 mg/dL, Low Albumin < 3.5 g/dL, Elevated Alkaline Phosphatase (ALP) > 120 U/L.
+Dietary Advice: Limit salt intake (to prevent fluid accumulation), restrict saturated fats, avoid raw shellfish (due to infection risks), consume liver-friendly foods (coffee, grapefruit, garlic, berries, olive oil), zero alcohol consumption.
+Preventive Recommendations: Get vaccinated against Hepatitis A and B, maintain a healthy weight (reverses fatty liver disease), avoid mixing medications with alcohol, review drug hepatotoxicity profiles.
+Clinical Action: Refer to a hepatologist. Order abdominal ultrasound, transient elastography (FibroScan), or liver function panels (LFTs).
+
+[HYPERTENSION_GUIDELINES]
+Condition: Hypertension (High Blood Pressure)
+Key Symptoms: Often asymptomatic ('silent killer'), severe headaches, chest pain, vision changes, fatigue, confusion, buzzing in ears.
+Clinical Markers: Systolic BP >= 130 mmHg, Diastolic BP >= 80 mmHg on multiple readings.
+Dietary Advice: DASH diet (rich in fruits, vegetables, whole grains), reduce sodium (<1,500 - 2,000 mg/day), increase potassium intake (leafy greens, avocados), limit caffeine and alcohol.
+Preventive Recommendations: Limit alcohol consumption, avoid all nicotine products, engage in regular daily cardiovascular exercise, reduce stress (yoga, breathing exercises), monitor blood pressure at home.
+Clinical Action: Initiate lifestyle modifications. If BP remains elevated (>140/90), initiate pharmacotherapy (ACE inhibitors, calcium channel blockers, or beta blockers) under a doctor's care.

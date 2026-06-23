@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedPredict AI - Disease Prediction Platform</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>MedPredict<span>AI</span></h1>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+                        <rect x="3" y="3" width="7" height="9" rx="1" />
+                        <rect x="14" y="3" width="7" height="5" rx="1" />
+                        <rect x="14" y="12" width="7" height="9" rx="1" />
+                        <rect x="3" y="16" width="7" height="5" rx="1" />
+                    </svg>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-tab="predict">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                    <span>Run Diagnosis</span>
+                </button>
+                <button class="nav-item" data-tab="comparison">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
+                    <span>Model Analysis</span>
+                </button>
+                <button class="nav-item" data-tab="datasets">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="nav-icon">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                    <span>Data Insights</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="status-badge">
+                    <span class="indicator online"></span>
+                    <span>AI Engine Online</span>
+                </div>
+                <div class="version-label">v1.2.0 (Gemini Powered)</div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header Bar -->
+            <header class="content-header">
+                <div class="header-info">
+                    <h2 id="page-title">Analytics Dashboard</h2>
+                    <p id="page-subtitle">Overview of disease predictive capabilities and active learning algorithms.</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-secondary btn-icon-only" id="theme-toggle" title="Toggle Light/Dark Mode">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="theme-icon-sun">
+                            <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </svg>
+                    </button>
+                    <button class="btn btn-primary" id="header-cta" onclick="switchTab('predict')">
+                        <span>New Diagnosis</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-icon-right">
+                            <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <!-- TABS CONTAINER -->
+            <div class="tab-contents">
+                
+                <!-- TAB: DASHBOARD -->
+                <section id="tab-dashboard" class="tab-pane active">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="card-glow"></div>
+                            <div class="metric-icon border-pink">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <h3>Heart Disease</h3>
+                                <p class="metric-val">88.5% Accuracy</p>
+                                <span class="metric-desc">Random Forest (Cleveland Data)</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="card-glow"></div>
+                            <div class="metric-icon border-cyan">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <h3>Diabetes Risk</h3>
+                                <p class="metric-val">77.9% Accuracy</p>
+                                <span class="metric-desc">Random Forest (Pima Indians Data)</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="card-glow"></div>
+                            <div class="metric-icon border-emerald">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
+                            </div>
+                            <div class="metric-info">
+                                <h3>Breast Cancer</h3>
+                                <p class="metric-val">96.5% Accuracy</p>
+                                <span class="metric-desc">XGBoost Classifier (Wisconsin Data)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layout-grid grid-2-1">
+                        <!-- Dashboard Left: Platform Highlights -->
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Clinical Support Platform</h3>
+                            </div>
+                            <div class="panel-body info-text">
+                                <p>MedPredict AI provides interactive diagnostic support powered by advanced Machine Learning. By deploying calibrated classifiers, clinicians and researchers can assess clinical risk probabilities in real-time.</p>
+                                
+                                <div class="features-list">
+                                    <div class="feature-item">
+                                        <div class="feat-dot bg-indigo"></div>
+                                        <div>
+                                            <strong>Four Core Classifiers:</strong> Comparative analysis using Support Vector Machines (SVM), Regularized Logistic Regression, Random Forests, and Gradient Boosting (XGBoost).
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feat-dot bg-cyan"></div>
+                                        <div>
+                                            <strong>Standardized Data Pipelines:</strong> Automatic scaling via StandardScaler ensures maximum precision for distance and coefficient-sensitive algorithms.
+                                        </div>
+                                    </div>
+                                    <div class="feature-item">
+                                        <div class="feat-dot bg-emerald"></div>
+                                        <div>
+                                            <strong>Top-Feature Constraint:</strong> Feature selection algorithms restrict complex clinical metrics to the top 10 most informative, lowering user entry overhead.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dashboard-action">
+                                    <button class="btn btn-primary" onclick="switchTab('predict')">Launch Diagnosis Simulator</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dashboard Right: Quick Engine Status -->
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Engine Configuration</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="specs-list">
+                                    <li><span>Total Models</span> <span>12 Trained</span></li>
+                                    <li><span>Validation Method</span> <span>Stratified 80/20</span></li>
+                                    <li><span>Avg Response Time</span> <span>&lt; 8ms</span></li>
+                                    <li><span>Scikit-Learn Version</span> <span>1.3.2</span></li>
+                                    <li><span>XGBoost Version</span> <span>3.2.0</span></li>
+                                    <li><span>Status</span> <span class="badge badge-success">Optimized</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB: PREDICT -->
+                <section id="tab-predict" class="tab-pane">
+                    <!-- Step 1: Choose Disease -->
+                    <div class="section-title">
+                        <h3>Select Diagnostic Subject</h3>
+                        <p>Choose the target condition to begin risk scoring.</p>
+                    </div>
+
+                    <div class="disease-selector">
+                        <div class="disease-card active" data-disease="heart_disease">
+                            <div class="disease-icon-wrap bg-soft-pink">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#f43f5e" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                                </svg>
+                            </div>
+                            <h4>Heart Disease</h4>
+                            <p>Predict coronary artery disease risk using vitals, ECG, and blood chemistry.</p>
+                        </div>
+                        <div class="disease-card" data-disease="diabetes">
+                            <div class="disease-icon-wrap bg-soft-cyan">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2">
+                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                </svg>
+                            </div>
+                            <h4>Diabetes</h4>
+                            <p>Assess likelihood of diabetes based on glucose levels, insulin, BMI, and heredity.</p>
+                        </div>
+                        <div class="disease-card" data-disease="breast_cancer">
+                            <div class="disease-icon-wrap bg-soft-emerald">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                </svg>
+                            </div>
+                            <h4>Breast Cancer</h4>
+                            <p>Classify tumor malignancy using the top 10 diagnostic cytological metrics.</p>
+                        </div>
+                    </div>
+
+                    <div class="layout-grid grid-2-1">
+                        <!-- Left Panel: Input Parameters Form -->
+                        <div class="panel-card">
+                            <div class="panel-header flex-header">
+                                <h3>Patient Vitals & Diagnostics</h3>
+                                <div class="autofill-options">
+                                    <button class="btn btn-outline" id="btn-fill-healthy" title="Load healthy patient metrics">Healthy Sample</button>
+                                    <button class="btn btn-outline btn-risk" id="btn-fill-sick" title="Load at-risk patient metrics">At-Risk Sample</button>
+                                </div>
+                            </div>
+                            
+                            <form id="prediction-form" class="panel-body">
+                                <div class="form-grid" id="form-fields-container">
+                                    <!-- Populated dynamically via JS -->
+                                </div>
+
+                                <div class="algorithm-selection-block">
+                                    <label class="block-label">Select Classifier Model</label>
+                                    <div class="algo-segmented-control">
+                                        <label class="algo-option">
+                                            <input type="radio" name="algorithm" value="random_forest" checked>
+                                            <span class="algo-btn">Random Forest</span>
+                                        </label>
+                                        <label class="algo-option">
+                                            <input type="radio" name="algorithm" value="xgboost">
+                                            <span class="algo-btn">XGBoost</span>
+                                        </label>
+                                        <label class="algo-option">
+                                            <input type="radio" name="algorithm" value="svm">
+                                            <span class="algo-btn">SVM</span>
+                                        </label>
+                                        <label class="algo-option">
+                                            <input type="radio" name="algorithm" value="logistic_regression">
+                                            <span class="algo-btn">Logistic Regression</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-submit-wrap">
+                                    <button type="submit" class="btn btn-primary btn-large btn-block" id="btn-predict">
+                                        <span>Compute Prediction Risk Score</span>
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-icon-right">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Right Panel: Prediction Results -->
+                        <div class="panel-card" id="results-panel">
+                            <div class="panel-header">
+                                <h3>Diagnostic Assessment</h3>
+                            </div>
+                            <div class="panel-body result-placeholder-state" id="result-placeholder">
+                                <div class="empty-state-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                                    </svg>
+                                </div>
+                                <h4>Awaiting Input Parameters</h4>
+                                <p>Fill in patient records or select a predefined sample, then submit the form to perform real-time risk assessment.</p>
+                            </div>
+
+                            <div class="panel-body result-active-state hidden" id="result-active">
+                                <div class="gauge-wrapper">
+                                    <div class="gauge-outer">
+                                        <svg viewBox="0 0 100 100" class="gauge-svg">
+                                            <!-- Background Arc -->
+                                            <path d="M20,80 A40,40 0 1,1 80,80" fill="none" class="gauge-bg" stroke-width="8" stroke-linecap="round"></path>
+                                            <!-- Progress Arc -->
+                                            <path d="M20,80 A40,40 0 1,1 80,80" fill="none" class="gauge-fill" stroke-width="8" stroke-linecap="round" stroke-dasharray="188.5" stroke-dashoffset="188.5"></path>
+                                        </svg>
+                                        <div class="gauge-text-wrap">
+                                            <span class="gauge-percentage" id="result-pct">0%</span>
+                                            <span class="gauge-label" id="result-level">Low Risk</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="assessment-summary">
+                                    <div class="summary-header">
+                                        <h4 id="result-title">Normal Findings Detected</h4>
+                                        <span class="badge" id="result-badge">Negative</span>
+                                    </div>
+                                    <p class="summary-text" id="result-text">
+                                        The AI model predicts a low possibility of disease based on the provided metrics. Clinical indicators remain within baseline variance.
+                                    </p>
+                                </div>
+
+                                <div class="clinical-recommendations">
+                                    <h5>Recommendations:</h5>
+                                    <ul id="recommendations-list">
+                                        <!-- Populated dynamically via JS -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB: COMPARISON -->
+                <section id="tab-comparison" class="tab-pane">
+                    <div class="comparison-filters">
+                        <div class="filter-group">
+                            <label for="comparison-disease-select">Target Disease Platform</label>
+                            <select id="comparison-disease-select" class="custom-select">
+                                <option value="heart_disease">Heart Disease</option>
+                                <option value="diabetes">Diabetes</option>
+                                <option value="breast_cancer">Breast Cancer</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Metrics Grid Comparison Table -->
+                    <div class="panel-card metrics-table-card">
+                        <div class="panel-header">
+                            <h3>Performance Comparison Metrics</h3>
+                        </div>
+                        <div class="panel-body table-responsive">
+                            <table class="metrics-table" id="metrics-compare-table">
+                                <thead>
+                                    <tr>
+                                        <th>Model / Algorithm</th>
+                                        <th>Accuracy</th>
+                                        <th>Precision</th>
+                                        <th>Recall</th>
+                                        <th>F1-Score</th>
+                                        <th>ROC-AUC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Graphs Grid -->
+                    <div class="layout-grid grid-2-1">
+                        <!-- Chart: Metrics Breakdown -->
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Algorithm Performance Breakdown</h3>
+                            </div>
+                            <div class="panel-body chart-wrap">
+                                <canvas id="metricsChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Chart: ROC Curves -->
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Receiver Operating Characteristic (ROC)</h3>
+                            </div>
+                            <div class="panel-body chart-wrap">
+                                <canvas id="rocChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layout-grid grid-2-1 mt-4">
+                        <!-- Chart: Feature Importance -->
+                        <div class="panel-card">
+                            <div class="panel-header">
+                                <h3>Feature Significance / Importances</h3>
+                            </div>
+                            <div class="panel-body chart-wrap">
+                                <canvas id="importanceChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Panel: Confusion Matrix -->
+                        <div class="panel-card">
+                            <div class="panel-header flex-header">
+                                <h3>Confusion Matrix</h3>
+                                <select id="cm-algorithm-select" class="custom-select select-small">
+                                    <option value="random_forest">Random Forest</option>
+                                    <option value="xgboost">XGBoost</option>
+                                    <option value="svm">SVM</option>
+                                    <option value="logistic_regression">Logistic Regression</option>
+                                </select>
+                            </div>
+                            <div class="panel-body flex-center">
+                                <div class="confusion-matrix-wrapper">
+                                    <div class="cm-grid">
+                                        <!-- Row 1: Actual Positive -->
+                                        <div class="cm-label-row">Actual True</div>
+                                        <div class="cm-cell val-tp" id="cm-tp">
+                                            <span class="cm-val">0</span>
+                                            <span class="cm-lbl">True Positive (TP)</span>
+                                        </div>
+                                        <div class="cm-cell val-fn" id="cm-fn">
+                                            <span class="cm-val">0</span>
+                                            <span class="cm-lbl">False Negative (FN)</span>
+                                        </div>
+
+                                        <!-- Row 2: Actual Negative -->
+                                        <div class="cm-label-row">Actual False</div>
+                                        <div class="cm-cell val-fp" id="cm-fp">
+                                            <span class="cm-val">0</span>
+                                            <span class="cm-lbl">False Positive (FP)</span>
+                                        </div>
+                                        <div class="cm-cell val-tn" id="cm-tn">
+                                            <span class="cm-val">0</span>
+                                            <span class="cm-lbl">True Negative (TN)</span>
+                                        </div>
+                                        
+                                        <!-- Column Labels -->
+                                        <div></div>
+                                        <div class="cm-label-col">Predicted True</div>
+                                        <div class="cm-label-col">Predicted False</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB: DATASETS -->
+                <section id="tab-datasets" class="tab-pane">
+                    <div class="section-title">
+                        <h3>Clinical Repositories</h3>
+                        <p>Detailed analysis of structured medical datasets and features.</p>
+                    </div>
+
+                    <div class="dataset-info-accordion" id="dataset-info-list">
+                        <!-- Heart Disease Card -->
+                        <div class="accordion-item panel-card">
+                            <div class="accordion-header">
+                                <h4>UCI Heart Disease Dataset (Cleveland)</h4>
+                                <span class="badge font-size-sm">303 Subjects • 14 Features</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p>The Cleveland heart disease dataset is the standard benchmark dataset used in medical classification tasks. The objective is to detect coronary heart disease (angiographic disease status).</p>
+                                <table class="specs-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Feature Key</th>
+                                            <th>Clinical Variable Name</th>
+                                            <th>Type</th>
+                                            <th>Range / Encoding</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>age</td><td>Age</td><td>Numeric</td><td>29 to 77 years</td></tr>
+                                        <tr><td>sex</td><td>Sex</td><td>Binary</td><td>1 = Male; 0 = Female</td></tr>
+                                        <tr><td>cp</td><td>Chest Pain Type</td><td>Categorical</td><td>1: Typical, 2: Atypical, 3: Non-Anginal, 4: Asymptomatic</td></tr>
+                                        <tr><td>trestbps</td><td>Resting Blood Pressure</td><td>Numeric</td><td>94 to 200 mm Hg</td></tr>
+                                        <tr><td>chol</td><td>Serum Cholesterol</td><td>Numeric</td><td>126 to 564 mg/dl</td></tr>
+                                        <tr><td>fbs</td><td>Fasting Blood Sugar</td><td>Binary</td><td>1 = Fasting Blood Sugar > 120 mg/dl; 0 = No</td></tr>
+                                        <tr><td>restecg</td><td>Resting Electrocardiographic</td><td>Categorical</td><td>0: Normal, 1: ST-T wave anomaly, 2: Left ventricular hypertrophy</td></tr>
+                                        <tr><td>thalach</td><td>Maximum Heart Rate</td><td>Numeric</td><td>71 to 202 bpm</td></tr>
+                                        <tr><td>exang</td><td>Exercise Induced Angina</td><td>Binary</td><td>1 = Yes; 0 = No</td></tr>
+                                        <tr><td>oldpeak</td><td>ST Depression (oldpeak)</td><td>Numeric</td><td>0.0 to 6.2 mm</td></tr>
+                                        <tr><td>slope</td><td>Slope of peak exercise ST</td><td>Categorical</td><td>1: Upsloping, 2: Flat, 3: Downsloping</td></tr>
+                                        <tr><td>ca</td><td>Major Vessels Colored (fluoroscopy)</td><td>Numeric</td><td>0 to 3 vessels</td></tr>
+                                        <tr><td>thal</td><td>Thalassemia State</td><td>Categorical</td><td>3: Normal, 6: Fixed defect, 7: Reversible defect</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Diabetes Card -->
+                        <div class="accordion-item panel-card">
+                            <div class="accordion-header">
+                                <h4>Pima Indians Diabetes Dataset (National Institute of Diabetes)</h4>
+                                <span class="badge font-size-sm">768 Subjects • 8 Features</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p>This dataset consists of diagnostic measurements collected from female patients of Pima Indian heritage, evaluating risk markers for Type 2 Diabetes Mellitus.</p>
+                                <table class="specs-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Feature Key</th>
+                                            <th>Clinical Variable Name</th>
+                                            <th>Type</th>
+                                            <th>Range / Encoding</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Pregnancies</td><td>Pregnancies Count</td><td>Numeric</td><td>0 to 17 pregnancies</td></tr>
+                                        <tr><td>Glucose</td><td>Plasma Glucose Concentration</td><td>Numeric</td><td>44 to 199 mg/dL</td></tr>
+                                        <tr><td>BloodPressure</td><td>Diastolic Blood Pressure</td><td>Numeric</td><td>24 to 122 mmHg</td></tr>
+                                        <tr><td>SkinThickness</td><td>Triceps Skin Fold Thickness</td><td>Numeric</td><td>7 to 99 mm</td></tr>
+                                        <tr><td>Insulin</td><td>2-Hour Serum Insulin</td><td>Numeric</td><td>14 to 846 μU/mL</td></tr>
+                                        <tr><td>BMI</td><td>Body Mass Index</td><td>Numeric</td><td>18.2 to 67.1 kg/m²</td></tr>
+                                        <tr><td>DiabetesPedigreeFunction</td><td>Diabetes Pedigree Score</td><td>Numeric</td><td>0.078 to 2.42 (Hereditary score)</td></tr>
+                                        <tr><td>Age</td><td>Age</td><td>Numeric</td><td>21 to 81 years</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Breast Cancer Card -->
+                        <div class="accordion-item panel-card">
+                            <div class="accordion-header">
+                                <h4>Wisconsin Diagnostic Breast Cancer (WDBC)</h4>
+                                <span class="badge font-size-sm">569 Subjects • 10 Selected Features</span>
+                            </div>
+                            <div class="accordion-content">
+                                <p>Extracted from digitized images of fine needle aspirates (FNA) of breast tissue. Features describe characteristics of cell nuclei present in the image. Our model isolates the top 10 most predictive features.</p>
+                                <table class="specs-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Feature Key</th>
+                                            <th>Clinical Variable Name</th>
+                                            <th>Type</th>
+                                            <th>Biological Significance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>worst area</td><td>Worst Area</td><td>Numeric</td><td>Maximum area boundary size of tumor cell nuclei.</td></tr>
+                                        <tr><td>worst concave points</td><td>Worst Concave Points</td><td>Numeric</td><td>Maximum number of concave portions of tumor boundaries.</td></tr>
+                                        <tr><td>mean concave points</td><td>Mean Concave Points</td><td>Numeric</td><td>Average number of concave portions of tumor cell boundaries.</td></tr>
+                                        <tr><td>worst radius</td><td>Worst Radius</td><td>Numeric</td><td>Maximum distance from center of cell to boundary.</td></tr>
+                                        <tr><td>worst perimeter</td><td>Worst Perimeter</td><td>Numeric</td><td>Maximum boundary perimeter size of tumor cell nuclei.</td></tr>
+                                        <tr><td>mean perimeter</td><td>Mean Perimeter</td><td>Numeric</td><td>Average boundary perimeter size of cell nuclei.</td></tr>
+                                        <tr><td>mean concavity</td><td>Mean Concavity</td><td>Numeric</td><td>Average severity of concave portions of the contour.</td></tr>
+                                        <tr><td>mean area</td><td>Mean Area</td><td>Numeric</td><td>Average area boundary size of tumor cell nuclei.</td></tr>
+                                        <tr><td>worst concavity</td><td>Worst Concavity</td><td>Numeric</td><td>Maximum severity of concave portions of the contour.</td></tr>
+                                        <tr><td>mean radius</td><td>Mean Radius</td><td>Numeric</td><td>Average distance from center to boundary.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="app.js"></script>
+</body>
+</html>
